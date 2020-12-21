@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    public  GameManager GetInstance
+    public  static GameManager GetInstance
     {
         get
         {
@@ -14,9 +14,10 @@ public class GameManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
