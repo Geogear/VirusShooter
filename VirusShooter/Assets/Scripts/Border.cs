@@ -15,20 +15,16 @@ public class Border : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Enter");
         if(collision.tag == "Player")
         {
-            Debug.Log("Enter Entered");
             HandleBorderFirst();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Exit");
         if (collision.tag == "Player")
         {
-            Debug.Log("Exit Entered");
             SetTrue();
         }
     }

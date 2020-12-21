@@ -202,7 +202,7 @@ public class SpaceShipController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     { 
-        if(other.tag == "Enemy" && !invulnerable)
+        if(other.tag == "Enemy" && !invulnerable && !other.GetComponent<Enemy>().isDead())
         { 
           other.GetComponent<Enemy>().beforeDeath();
           Death();
