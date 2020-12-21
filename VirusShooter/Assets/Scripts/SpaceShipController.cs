@@ -51,6 +51,7 @@ public class SpaceShipController : MonoBehaviour
 
     void Start()
     {
+        flashCounter = flashCount + 1;
         mat = GetComponent<SpriteRenderer>().material;
         mat.SetColor("_FlashColor", flashColor);
         m_InputDriver = GetComponent<InputDriver>(); 
@@ -237,5 +238,10 @@ public class SpaceShipController : MonoBehaviour
     {
         return (rotationValue = 0) == 0;
     }
-    */
+    */ 
+    public InputDriver GetInputStatus()
+    {
+        return m_InputDriver;
+    }
+
 }
