@@ -16,6 +16,7 @@ public class SpaceShipController : MonoBehaviour
     public Transform spawnPos;
     float wait = 0.0f;
     bool animSet = false;
+     SceneUtilizer m_Scene;
 
     public Color flashColor;
     public float flashDuration;
@@ -63,6 +64,7 @@ public class SpaceShipController : MonoBehaviour
         m_InputDriver = GetComponent<InputDriver>(); 
         m_InputDriver.Init_Input();
         anim = GetComponent<Animator>();
+        m_Scene = SceneUtilizer.GetInstance;
     }
 
     private void Flash()
@@ -181,6 +183,7 @@ public class SpaceShipController : MonoBehaviour
         if(lives == 0)
         {
             //TODO end game, return to main menu somthing
+            m_Scene.LoadTargetScene("MainMenu");
         }
         else
         {
