@@ -24,7 +24,9 @@ public class SpaceShipController : MonoBehaviour
     private float flashCDC = 0.0f;
     public int flashCount;
     private int flashCounter = 0;
-    private bool invulnerable = false;
+    private bool invulnerable = false; 
+
+    public bool[] canGo = new bool [4];
 
     Material mat;
 
@@ -51,6 +53,10 @@ public class SpaceShipController : MonoBehaviour
 
     void Start()
     {
+        for (int i = 0; i < canGo.Length; i++)
+        {
+            canGo[i] = true;
+        }
         flashCounter = flashCount + 1;
         mat = GetComponent<SpriteRenderer>().material;
         mat.SetColor("_FlashColor", flashColor);
@@ -128,7 +134,7 @@ public class SpaceShipController : MonoBehaviour
 
     void SpaceShipMove()
     {
-        if (m_InputDriver.m_Input._left)
+        if (m_InputDriver.m_Input._left && canGo[2])
         {
             //lastPosition = transform.position;
             transform.position = new Vector2(transform.position.x-(spaceShip_Speed * Time.deltaTime), transform.position.y);
@@ -137,7 +143,7 @@ public class SpaceShipController : MonoBehaviour
             //transform.rotation = Quaternion.Euler(Vector2.up * lastPosition.x * rotationSpeed * Mathf.Deg2Rad);
             //RotateSpaceShip(lastPosition);
         }
-        if (m_InputDriver.m_Input._right)
+        if (m_InputDriver.m_Input._right && canGo[3])
         {
             //lastPosition = transform.position;
             transform.position = new Vector2(transform.position.x + (spaceShip_Speed * Time.deltaTime), transform.position.y);
@@ -145,11 +151,11 @@ public class SpaceShipController : MonoBehaviour
             //lastPosition.x = +1;
            // transform.rotation = Quaternion.Euler(Vector2.up *lastPosition.x *rotationSpeed * Mathf.Deg2Rad);
         }
-        if (m_InputDriver.m_Input._up)
+        if (m_InputDriver.m_Input._up && canGo[1])
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + (spaceShip_Speed * Time.deltaTime));
         }
-        if (m_InputDriver.m_Input._down)
+        if (m_InputDriver.m_Input._down && canGo[0])
         {
             transform.position = new Vector2(transform.position.x, transform.position.y - (spaceShip_Speed * Time.deltaTime));
         }
